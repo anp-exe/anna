@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anna Parker</title>
+<meta name="description" content="Anna Parker — BSc Artificial Intelligence @ KCL, ex robotics engineer @ Bath. Data journalism and AI." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Special+Elite&family=Press+Start+2P&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#e4e3df;        /* soft grey page */
+    --paper-2:#eeede9;       /* raised panel */
+    --card:#faf9f6;          /* near-white sticker */
+    --ink:#151513;           /* near-black text */
+    --ink-soft:#5f5e58;      /* muted */
+    --ink-mute:#8d8c84;      /* faint */
+    --rule:#c4c3be;          /* hairline */
+    --rule-dk:#151513;       /* strong rule */
+    --mat:#f6f5f1;           /* frame mat */
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"EB Garamond",Georgia,serif;font-size:19px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--ink);text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 26px;}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:50;background:rgba(228,227,223,.86);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);}
+  .nav-in{max-width:1180px;margin:0 auto;padding:16px 26px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .brand{font-family:"Playfair Display",serif;font-weight:700;font-size:22px;
+    letter-spacing:.5px;}
+  .brand span{font-family:"Special Elite",monospace;font-size:11px;letter-spacing:3px;
+    text-transform:uppercase;color:var(--ink-mute);margin-left:10px;}
+  .nav-links{display:flex;gap:26px;font-family:"Special Elite",monospace;font-size:12px;
+    letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);}
+  .nav-links a{position:relative;padding-bottom:3px;}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--ink);transition:width .25s;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a:hover::after{width:100%;}
+
+  /* ---------- HERO ---------- */
+  .hero{display:grid;grid-template-columns:0.92fr 1.08fr;gap:56px;
+    align-items:center;padding:56px 0 60px;}
+  /* framed photo */
+  .frame{position:relative;width:100%;max-width:420px;aspect-ratio:310/424;
+    margin:0 auto;background:var(--mat);
+    box-shadow:0 22px 50px -18px rgba(0,0,0,.4);}
+  .frame .photo{position:absolute;top:11.6%;left:16.5%;right:16.8%;bottom:12%;
+    overflow:hidden;background:#ddd;}
+  .frame .photo img{width:100%;height:100%;object-fit:cover;
+    object-position:52% 72%;transform:scale(1.95);transform-origin:52% 72%;
+    filter:grayscale(100%) contrast(1.03);}
+  .frame .lace{position:absolute;inset:0;width:100%;height:100%;
+    pointer-events:none;}
+  .frame-cap{max-width:420px;margin:20px auto 0;text-align:center;
+    font-family:"EB Garamond",serif;font-style:italic;font-size:16px;line-height:1.55;
+    color:var(--ink-soft);}
+  .frame-cap strong{font-style:normal;font-weight:600;color:var(--ink);}
+
+  /* badges column */
+  .badges{display:flex;flex-direction:column;gap:16px;max-width:440px;}
+  .b-eyebrow{font-family:"Special Elite",monospace;font-size:11px;letter-spacing:4px;
+    text-transform:uppercase;color:var(--ink-mute);margin-bottom:2px;}
+  .badge{display:flex;align-items:center;gap:16px;background:var(--card);
+    border:1px solid var(--ink);padding:14px 18px;
+    box-shadow:3px 4px 0 rgba(21,21,19,.14);
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s;}
+  .badge:hover{transform:translateY(-4px) rotate(-1deg);
+    box-shadow:5px 8px 0 rgba(21,21,19,.18);}
+  .badge .ic{flex:none;width:52px;height:52px;background:var(--ink);color:var(--card);
+    display:flex;align-items:center;justify-content:center;}
+  .badge .ic svg{width:28px;height:28px;}
+  .badge .ic img{width:100%;height:100%;object-fit:contain;
+    filter:grayscale(100%) contrast(1.1) brightness(1.05);}
+  .badge .ic.plain{background:var(--card);border:1px solid var(--rule);padding:5px;}
+  .badge .tx{display:flex;flex-direction:column;line-height:1.28;min-width:0;}
+  .badge .tx .t{font-family:"Playfair Display",serif;font-weight:700;font-size:18px;}
+  .badge .tx .s{font-family:"Special Elite",monospace;font-size:10.5px;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--ink-soft);margin-top:3px;}
+  /* medium feature badge */
+  .badge.medium{border-width:2px;box-shadow:3px 4px 0 rgba(21,21,19,.2);}
+  .badge.medium .ic svg{width:32px;height:32px;color:var(--ink);}
+  .badge.medium .tx .t{font-size:17px;font-style:italic;font-weight:600;}
+  /* codedex wordmark badge */
+  .badge.codedex{flex-wrap:wrap;gap:12px 14px;}
+  .badge.codedex .word{font-family:"Press Start 2P",monospace;font-size:16px;
+    letter-spacing:1px;color:var(--ink);}
+  .badge.codedex .pill{font-family:"Press Start 2P",monospace;font-size:9px;
+    letter-spacing:1px;background:var(--ink);color:var(--card);
+    padding:7px 10px;text-transform:uppercase;white-space:nowrap;}
+
+  /* ---------- SECTION HEADER ---------- */
+  .section-head{display:flex;align-items:center;gap:18px;margin:30px 0 6px;}
+  .section-head::before,.section-head::after{content:"";flex:1;height:1px;background:var(--rule);}
+  .section-head h3{font-family:"Special Elite",monospace;font-size:13px;letter-spacing:6px;
+    text-transform:uppercase;color:var(--ink-soft);margin:0;white-space:nowrap;}
+  .deck-line{text-align:center;font-family:"Playfair Display",serif;font-style:italic;
+    font-size:20px;color:var(--ink-soft);margin:0 auto 26px;max-width:60ch;}
+
+  /* ---------- PROJECTS ---------- */
+  .columns{display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-top:2px solid var(--rule-dk);border-bottom:2px solid var(--rule-dk);
+    background:var(--paper-2);}
+  .col{padding:28px 24px;border-right:1px solid var(--rule);}
+  .col:last-child{border-right:none;}
+  .kicker{font-family:"Special Elite",monospace;font-size:10.5px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--ink-mute);margin-bottom:10px;}
+  .col h4{font-family:"Playfair Display",serif;font-weight:900;font-size:29px;line-height:1.02;
+    margin:0 0 4px;}
+  .col .subhead{font-family:"Playfair Display",serif;font-style:italic;font-size:18px;
+    color:var(--ink-soft);margin-bottom:14px;}
+  .col .lede{font-size:17px;line-height:1.55;}
+  .col .lede::first-letter{font-family:"Playfair Display",serif;font-weight:900;
+    font-size:3.1em;line-height:.72;float:left;padding:6px 8px 0 0;color:var(--ink);}
+  .stat-row{display:flex;gap:14px;margin:16px 0 14px;padding:12px 0;
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+  .stat{flex:1;}
+  .stat b{display:block;font-family:"Playfair Display",serif;font-size:23px;line-height:1;}
+  .stat span{font-family:"Special Elite",monospace;font-size:9px;letter-spacing:.5px;
+    text-transform:uppercase;color:var(--ink-mute);}
+  .tags{font-family:"Special Elite",monospace;font-size:10px;letter-spacing:1px;
+    text-transform:uppercase;color:var(--ink-mute);margin:6px 0 16px;}
+  .links{display:flex;flex-direction:column;gap:7px;}
+  .links a{font-family:"Special Elite",monospace;font-size:12px;letter-spacing:1px;
+    text-transform:uppercase;border-bottom:1px solid var(--rule);padding-bottom:6px;
+    display:inline-flex;justify-content:space-between;transition:border-color .2s;}
+  .links a::after{content:"→";}
+  .links a:hover{border-color:var(--ink);}
+
+  /* ---------- FOOTER over banner ---------- */
+  footer{margin-top:56px;padding:80px 26px 70px;text-align:center;position:relative;
+    border-top:1px solid var(--rule);
+    background:linear-gradient(rgba(18,18,20,.68),rgba(18,18,20,.80)),
+      url("images/banner.png") center/cover no-repeat;}
+  .connect-tagline{font-family:"Playfair Display",serif;font-style:italic;font-size:23px;
+    color:var(--ink-soft);margin:0 0 36px;}
+  .connect{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;
+    gap:34px 44px;max-width:900px;margin:0 auto 44px;}
+  .cardt{display:flex;align-items:center;gap:18px;width:320px;max-width:100%;
+    padding:22px 24px;text-decoration:none;text-align:left;position:relative;border-radius:6px;
+    box-shadow:0 8px 22px rgba(21,21,19,.22);
+    transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s;}
+  .cardt.blue{background:linear-gradient(135deg,#2a73c2 0%,#155fa8 100%);color:#fff;}
+  .cardt.dark{background:linear-gradient(135deg,#3a3a3f 0%,#232327 100%);color:#fff;}
+  .cardt:hover{transform:translateY(-6px) scale(1.02);
+    box-shadow:0 18px 38px rgba(21,21,19,.32);}
+  .cardt .ico{width:54px;height:54px;flex:none;background:#fff;border-radius:12px;padding:9px;
+    box-shadow:0 3px 10px rgba(0,0,0,.18);}
+  .cardt .ico svg{width:100%;height:100%;display:block;}
+  .cardt .tt{flex:1;min-width:0;}
+  .cardt .lab{font-family:"Special Elite",monospace;font-size:11px;letter-spacing:3px;
+    text-transform:uppercase;opacity:.92;margin-bottom:5px;}
+  .cardt .han{font-family:"Playfair Display",serif;font-style:italic;font-weight:700;
+    font-size:24px;line-height:1.15;margin-bottom:4px;}
+  .cardt .tag{font-family:"Playfair Display",serif;font-style:italic;font-size:16px;opacity:.9;}
+  .colophon{text-align:center;font-family:"Special Elite",monospace;font-size:11px;
+    letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.62);}
+
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr;gap:36px;padding:36px 0 44px;}
+    .badges{max-width:520px;margin:0 auto;width:100%;}
+    .columns{grid-template-columns:1fr;}
+    .col{border-right:none;border-bottom:1px solid var(--rule);}
+    .col:last-child{border-bottom:none;}
+    .connect{grid-template-columns:1fr;}
+    .nav-links{gap:16px;font-size:11px;}
+    .brand span{display:none;}
+  }
+  @media (max-width:520px){
+    .nav-links a:nth-child(1){display:none;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="nav-in">
+      <div class="brand">Anna Parker <span>London</span></div>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="https://www.linkedin.com/in/annaparker2005/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/anp-exe" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero-photo">
+        <div class="frame">
+          <div class="photo"><img src="images/hero.jpg" alt="Portrait of Anna Parker" /></div>
+          <img class="lace" src="images/frame-cut.png" alt="" aria-hidden="true" />
+        </div>
+        <p class="frame-cap">I study at <strong>King's College London</strong>, the 31st best university in the world according to the QS World University Rankings.</p>
+      </div>
+
+      <div class="badges">
+        <a class="badge medium" href="https://medium.com/@Joy-P/i-was-the-only-woman-playing-among-50-or-100-men-fc39f6fedbe5" target="_blank" rel="noopener">
+          <span class="ic plain"><svg viewBox="0 0 24 24" fill="currentColor" aria-label="Medium"><path d="M4.21 0A4.201 4.201 0 0 0 0 4.21v15.58A4.201 4.201 0 0 0 4.21 24h15.58A4.201 4.201 0 0 0 24 19.79v-1.093c-.137.013-.278.02-.422.02-2.577 0-4.027-2.146-4.09-4.832a7.592 7.592 0 0 1 .022-.708c.093-1.186.475-2.241 1.105-3.022a3.885 3.885 0 0 1 1.395-1.1c.468-.237 1.127-.367 1.664-.367h.023c.101 0 .202.004.303.01V4.211A4.201 4.201 0 0 0 19.79 0Zm.198 5.583h4.165l3.588 8.435 3.59-8.435h3.864v.146l-.019.004c-.705.16-1.063.397-1.063 1.254h-.003l.003 10.274c.06.676.424.885 1.063 1.03l.02.004v.145h-4.923v-.145l.019-.005c.639-.144.994-.353 1.054-1.03V7.267l-4.745 11.15h-.261L6.15 7.569v9.445c0 .857.358 1.094 1.063 1.253l.02.004v.147H4.405v-.147l.019-.004c.705-.16 1.065-.397 1.065-1.253V6.987c0-.857-.358-1.094-1.064-1.254l-.018-.004zm19.25 3.668c-1.086.023-1.733 1.323-1.813 3.124H24V9.298a1.378 1.378 0 0 0-.342-.047Zm-1.862 3.632c-.1 1.756.86 3.239 2.204 3.634v-3.634z"/></svg></span>
+          <span class="tx"><span class="t">As featured in Medium</span></span>
+        </a>
+
+        <a class="badge" href="https://www.credly.com/badges/f2462771-efa4-4541-ac13-a0cec2dcbae7/linked_in_profile" target="_blank" rel="noopener">
+          <span class="ic plain"><img src="https://images.credly.com/images/4d4693bb-530e-4bca-9327-de07f3aa2348/linkedin_thumb_image.png" alt="AWS Certified AI Practitioner" /></span>
+          <span class="tx"><span class="t">AWS Certified</span><span class="s">AI Practitioner · Foundational</span></span>
+        </a>
+
+        <a class="badge codedex" href="https://www.codedex.io/community/project-showcase/8heTMLvBRGiM1XGU7Gc6" target="_blank" rel="noopener">
+          <span class="word">Codédex</span>
+          <span class="pill">Staff Pick</span>
+        </a>
+
+        <a class="badge codedex" href="https://github.com/anp-exe/detect-ai-slop-tutorial" target="_blank" rel="noopener">
+          <span class="word">Codédex</span>
+          <span class="pill">Monthly Challenge Winner</span>
+        </a>
+
+        <a class="badge" href="https://www.codedex.io/clash" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7"/><path d="M9.5 3.5h5M12 3.5v2.2M18.5 8l1.3-1.3"/><path d="M9.6 11.2l2.1 2-2.1 2"/><path d="M12.6 15.6h3"/></svg></span>
+          <span class="tx"><span class="t">Clash of Code</span><span class="s">Coding Speed · Legend Level</span></span>
+        </a>
+
+        <a class="badge" href="https://www.englishchess.org.uk/ecf-grading/" target="_blank" rel="noopener">
+          <span class="ic plain"><img src="images/ecf-logo.png" alt="English Chess Federation" /></span>
+          <span class="tx"><span class="t">ECF Rated 1442</span><span class="s">Playing Since 2024</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== FEATURED WORK ===== -->
+    <div id="work" class="section-head"><h3>Featured Works</h3></div>
+
+    <section class="columns">
+      <article class="col">
+        <div class="kicker">2025 · Data Story · Python &amp; Next.js</div>
+        <h4>Women in Chess</h4>
+        <div class="subhead">One in nine.</div>
+        <p class="lede">Only one in nine FIDE rated players is a woman, and when <em>The Queen's Gambit</em> promised a revolution, I went looking for it in the numbers. Across 130 monthly FIDE snapshots, a Prophet forecast and a Monte Carlo simulation, the verdict was quietly damning: the boom was real, it just happened somewhere the federation could not see.</p>
+        <div class="stat-row">
+          <div class="stat"><b>545k</b><span>players</span></div>
+          <div class="stat"><b>130</b><span>snapshots</span></div>
+          <div class="stat"><b>2015–26</b><span>dataset</span></div>
+        </div>
+        <div class="tags">Prophet · Monte Carlo · Recharts</div>
+        <div class="links">
+          <a href="https://anp-exe.github.io/women-in-chess-analysis/" target="_blank" rel="noopener">Read the story</a>
+          <a href="https://github.com/anp-exe/fide-rating_analysisV2" target="_blank" rel="noopener">View the code</a>
+        </div>
+      </article>
+
+      <article class="col">
+        <div class="kicker">2026 · AI Tutorial · Hugging Face</div>
+        <h4>The Slop Detector</h4>
+        <div class="subhead">Scored out of 100.</div>
+        <p class="lede">When the internship hunt dropped me into a LinkedIn feed that was wall to wall AI slop, I built a tool to fight back. It reads any post and scores how much it reeks of the machine, a deliberate fifty-fifty split between transparent rules and a zero-shot classifier, then prints the verdict on a shareable card. Built in roughly fourteen hours, plus a crash course in Figma.</p>
+        <div class="stat-row">
+          <div class="stat"><b>50/50</b><span>rules vs AI</span></div>
+          <div class="stat"><b>~14h</b><span>build time</span></div>
+          <div class="stat"><b>0-shot</b><span>classifier</span></div>
+        </div>
+        <div class="tags">bart-large-mnli · Pillow · Figma</div>
+        <div class="links">
+          <a href="https://github.com/anp-exe/detect-ai-slop-tutorial/blob/main/TUTORIAL.md" target="_blank" rel="noopener">Read the tutorial</a>
+          <a href="https://github.com/anp-exe/detect-ai-slop-tutorial" target="_blank" rel="noopener">View the code</a>
+        </div>
+      </article>
+
+      <article class="col">
+        <div class="kicker">2026 · Data Journalism · Python &amp; Next.js</div>
+        <h4>Care Leavers</h4>
+        <div class="subhead">Rarer than a millionaire.</div>
+        <p class="lede">A person in the UK is likelier to become a millionaire than a care leaver is to reach a top university. Built from public DfE and UCAS data as an interactive scrollytelling piece, this is a personal project and a personal story: more care leavers reach university than ever, yet the higher you look, the wider the gap grows, until it becomes a chasm.</p>
+        <div class="stat-row">
+          <div class="stat"><b>2%</b><span>top uni by 19</span></div>
+          <div class="stat"><b>3.5×</b><span>peers' lead</span></div>
+          <div class="stat"><b>12</b><span>figures</span></div>
+        </div>
+        <div class="tags">pandas · matplotlib · seaborn</div>
+        <div class="links">
+          <a href="https://anp-exe.github.io/care-leaver-analysis-he/" target="_blank" rel="noopener">Read the story</a>
+          <a href="https://github.com/anp-exe/care-leaver-analysis-he" target="_blank" rel="noopener">View the code</a>
+        </div>
+      </article>
+    </section>
+
+  </div><!-- /wrap -->
+
+    <!-- ===== FOOTER over banner ===== -->
+    <footer>
+      <div class="connect">
+        <a class="cardt blue" href="https://www.linkedin.com/in/annaparker2005/" target="_blank" rel="noopener">
+          <svg class="ico" viewBox="0 0 24 24" fill="#0077b5" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          <div class="tt">
+            <p class="lab">LinkedIn</p>
+            <p class="han">Anna Parker</p>
+            <p class="tag">let's build something together.</p>
+          </div>
+        </a>
+        <a class="cardt dark" href="https://github.com/anp-exe" target="_blank" rel="noopener">
+          <svg class="ico" viewBox="0 0 24 24" fill="#1a1a1a" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <div class="tt">
+            <p class="lab">GitHub</p>
+            <p class="han">@anp-exe</p>
+            <p class="tag">$ git connect -- me</p>
+          </div>
+        </a>
+      </div>
+      <div class="colophon">Printed in London · Set in Playfair &amp; Garamond · MMXXVI</div>
+    </footer>
+</body>
+</html>
